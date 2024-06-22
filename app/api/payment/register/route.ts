@@ -6,7 +6,7 @@ type CreatePayment = {
     scoutId: string;
     amount: number;
 }
-export default async function POST ({token, scoutId, amount}: CreatePayment) {
+export async function POST ({token, scoutId, amount}: CreatePayment) {
     const bkash_headers = async () => {
         return {
           "Content-Type": "application/json",
