@@ -4,7 +4,10 @@ import {
   Settings,
   Bookmark,
   SquarePen,
-  LayoutGrid
+  LayoutGrid,
+  LayoutGridIcon,
+  Blocks,
+  UtilityPole
 } from "lucide-react";
 
 type Submenu = {
@@ -34,39 +37,50 @@ export function getMenuList(pathname: string): Group[] {
         {
           href: "/dashboard",
           label: "Dashboard",
-          active: pathname.includes("/dashboard"),
+          active: pathname === "/dashboard",
           icon: LayoutGrid,
           submenus: []
         }
       ]
     },
     {
-      groupLabel: "Contents",
+      groupLabel: "Main",
       menus: [
         {
           href: "",
-          label: "Posts",
-          active: pathname.includes("/posts"),
-          icon: SquarePen,
+          label: "Unit",
+          active: pathname.includes("/dashboard/unit"),
+          icon: Blocks,
           submenus: [
             {
-              href: "/posts",
-              label: "All Posts",
-              active: pathname === "/posts"
+              href: "/dashboard/unit/create",
+              label: "Create",
+              active: pathname === "/dashboard/unit/create"
             },
             {
-              href: "/posts/new",
-              label: "New Post",
-              active: pathname === "/posts/new"
+              href: "/dashboard/unit",
+              label: "List",
+              active: pathname === "/dashboard/unit"
             }
           ]
         },
         {
-          href: "/categories",
-          label: "Categories",
-          active: pathname.includes("/categories"),
-          icon: Bookmark,
-          submenus: []
+          href: "",
+          label: "Utils",
+          active: pathname.includes("/utils"),
+          icon: UtilityPole,
+          submenus: [
+            {
+              href: "/dashboard/utils/fee",
+              label: "Fee",
+              active: pathname === "/dashboard/utils/fee"
+            },
+            {
+              href: "/dashboard/utils/coupon",
+              label: "Coupon",
+              active: pathname === "/dashboard/utils/coupon"
+            },
+          ]
         },
         {
           href: "/tags",

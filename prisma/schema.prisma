@@ -33,6 +33,11 @@ enum Status {
   Suspended
 }
 
+enum CouponStatus {
+  Active
+  Inactive
+}
+
 model User {
   id String @id @default(uuid())
   clerkId String @unique
@@ -111,6 +116,30 @@ model Unit {
   leader Scout? @relation(name: "UnitLeader", fields: [leaderId], references: [id])
 
   scouts Scout[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model Fee {
+  id String @id @default(uuid())
+  title String
+  amount Int
+  discountAmount Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+model Coupon {
+  id String @id @default(uuid())
+  title String
+  code String
+  value Int
+  expire DateTime @default(now())
+  status CouponStatus @default(Inactive)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
