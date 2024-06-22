@@ -1,10 +1,6 @@
 "use server"
 
-import globalStorage from 'node-global-storage';
-
 export const GENERATE_BKASH_TOKEN = async () => {
-    // globalStorage.unsetValue("token")
-
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
@@ -26,9 +22,6 @@ export const GENERATE_BKASH_TOKEN = async () => {
 
     const data = await res.json()
 
-    // globalStorage.setValue("token", data?.id_token, { protected: true });
-
-    console.log(data)
     return {
         success: true,
         token: data?.id_token

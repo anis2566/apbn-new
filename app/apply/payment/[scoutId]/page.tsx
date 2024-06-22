@@ -19,14 +19,9 @@ const Payment = async ({ params: { scoutId } }: PaymentProps) => {
 
     if (!scout) redirect("/")
     
-    const registrationFee = await db.fee.findFirst({
-        where: {
-            title: "registration"
-        }
-    })
-
-
     
+        
+
     return (
         <div className="flex items-center justify-center min-h-screen mt-6">
             <Card className="w-full max-w-xl mx-auto">

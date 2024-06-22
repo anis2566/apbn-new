@@ -14,6 +14,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { GENERATE_BKASH_TOKEN } from "@/services/bkash.service";
+import axios from "axios"
 
 interface PaymentFormProps {
     scoutId: string;
@@ -72,12 +73,22 @@ export const PaymentForm = ({ scoutId }: PaymentFormProps) => {
         }
     }, [scout?.apsId, regFee])
 
+    const createPayment = async () => {
+        const {data} = await axios.post("/api/payment/register", {
+            token: localStorage.getItem("token"),
+            scoutId: scout?.id,
+            amount: fee
+        })
+        console.log(data)
+    }
+
     const {mutate: generateToken} = useMutation({
         mutationFn: GENERATE_BKASH_TOKEN,
         onSuccess: (data) => {
             console.log(data?.success)
             if (data?.token) {
                 localStorage.setItem("bkash_token", data?.token)
+                createPayment()
             }
         }
     })
